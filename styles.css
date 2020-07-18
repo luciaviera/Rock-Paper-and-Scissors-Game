@@ -57,7 +57,6 @@ body {
     font-size: 60px;
     -webkit-text-stroke: 0.0000000000000001px #D8D7DD;
     justify-content: space-around;
-    height: 50vh;
     transition: opacity 0.5s ease;
 }
  
@@ -79,7 +78,7 @@ body {
 
 .match{
     position: absolute;
-    top: 50%;
+    top: 450px;
     left: 50%;
     transform: translate(-50%,-50%);
     transition: opacity 0.5s ease 0.5s;
@@ -97,6 +96,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;
 }
 
 #button1:hover,

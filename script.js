@@ -22,18 +22,66 @@ const game = ()=> {
 
 
         //Computer Options
-        const computerOptions = ["rock", "paper", "scisors"];
+        const computerOptions = ["ROCK", "PAPER", "SCISSORS"];
 
         options.forEach(option => {
             option.addEventListener("click", function() {
                 //Computer Play
-                const computerNumber = Math.floor(Math.random() *3);
-                const computerPlay = computerOptions[computerNumber];
-                console.log(computerPlay);
+                const computerPlay = Math.floor(Math.random() *3);
+                const computerSelection = computerOptions[computerPlay];
+
+                //Call compare hands
+                compareHands(this.classList, computerSelection);
+
+                //Upadate pictures
+                computerHand.src =`./pictures/${computerSelection}.png`;
+                playerHand.src =`./pictures/${this.classList}.png`;
             });
         });
 
     };
+
+    const compareHands = (computerSelection, playerSelection) =>{
+        //Update text
+        const winner = document.querySelector(".winner");
+        //Checking for a tie
+        if(playerSelection === computerSelection){
+            winner.textContent = "It is a tie";
+            return;
+        }
+        //Check for rock
+        if (playerSelection === "ROCK"){
+            if(computerSelection === "SCISSORS"){
+                winner.textContent = "Player Wins";
+                return;
+            }else{
+                winner.textContent = "Computer Wins";
+                return;
+            }
+        }
+        //Check for paper
+        if (playerSelection === "PAPER"){
+            if(computerSelection === "SCISSORS"){
+                winner.textContent = "Computer Wins";
+                return;
+            }else{
+                winner.textContent = "Player Wins";
+                return;
+            }
+        }
+        //Check for scissors
+        if (playerSelection === "SCISSORS"){
+            if(computerSelection === "ROCK"){
+                winner.textContent = "Computer Wins";
+                return;
+            }else{
+                winner.textContent = "Player Wins";
+                return;
+            }
+        }
+        
+
+    }
 
     // Call all the inner functions
     startGame();
