@@ -31,7 +31,7 @@ const game = ()=> {
                 const computerSelection = computerOptions[computerPlay];
 
                 //Call compare hands
-                compareHands(this.classList, computerSelection);
+                compareHands(computerSelection, this.classList.value);
 
                 //Upadate pictures
                 computerHand.src =`./pictures/${computerSelection}.png`;
