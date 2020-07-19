@@ -49,7 +49,7 @@ const game = ()=> {
 
                 //Animation
                 playerHand.style.animation = "shakePlayer 1.5s ease";
-                computerHand.value.classlist.style.animation = "shakeComputer 1.5s ease";
+                computerHand.style.animation = "shakeComputer 1.5s ease";
             });
         });
 
