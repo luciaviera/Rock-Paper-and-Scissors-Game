@@ -1,7 +1,7 @@
 const game = ()=> {
 
-    let playerScore = 0;
-    let computerScore = 0;
+    let pScore = 0;
+    let cScore = 0;
 
     //Start the game
     const startGame = () => {
@@ -19,6 +19,13 @@ const game = ()=> {
         const options = document.querySelectorAll(".options button");
         const playerHand = document.querySelector(".player-hand");
         const computerHand = document.querySelector(".computer-hand");
+        const hands = document.querySelectorAll(".hands img");
+
+        hands.forEach(hand =>{
+            hand.addEventListener("animationend", function(){
+                this.style.animation = "";
+            });
+        });
 
 
         //Computer Options
@@ -36,10 +43,21 @@ const game = ()=> {
                 //Upadate pictures
                 computerHand.src =`./pictures/${computerSelection}.png`;
                 playerHand.src =`./pictures/${this.classList}.png`;
+
+                playerHand.style.animation = "shakePlayer 1.5s ease";
+                computerHand.style.animation = "shakeComputer 2s ease";
             });
         });
 
     };
+
+    //Upadte score
+    const updateScore = () =>{
+        const playerScore = document.querySelector(".player-score p");
+        const computerScore = document.querySelector(".computer-score p");
+        playerScore.textContent = pScore;
+        computerScore.textContent =cScore;
+    }
 
     const compareHands = (computerSelection, playerSelection) =>{
         //Update text
@@ -53,9 +71,13 @@ const game = ()=> {
         if (playerSelection === "ROCK"){
             if(computerSelection === "SCISSORS"){
                 winner.textContent = "Player Wins";
+                pScore++;
+                updateScore();
                 return;
             }else{
                 winner.textContent = "Computer Wins";
+                cScore++;
+                updateScore();
                 return;
             }
         }
@@ -63,9 +85,13 @@ const game = ()=> {
         if (playerSelection === "PAPER"){
             if(computerSelection === "SCISSORS"){
                 winner.textContent = "Computer Wins";
+                cScore++;
+                updateScore();
                 return;
             }else{
                 winner.textContent = "Player Wins";
+                pScore++;
+                updateScore();
                 return;
             }
         }
@@ -73,9 +99,13 @@ const game = ()=> {
         if (playerSelection === "SCISSORS"){
             if(computerSelection === "ROCK"){
                 winner.textContent = "Computer Wins";
+                cScore++;
+                updateScore();
                 return;
             }else{
                 winner.textContent = "Player Wins";
+                pScore++;
+                updateScore();
                 return;
             }
         }
