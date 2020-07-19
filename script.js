@@ -32,20 +32,24 @@ const game = ()=> {
         const computerOptions = ["ROCK", "PAPER", "SCISSORS"];
 
         options.forEach(option => {
+
             option.addEventListener("click", function() {
                 //Computer Play
                 const computerPlay = Math.floor(Math.random() *3);
                 const computerSelection = computerOptions[computerPlay];
 
-                //Call compare hands
-                compareHands(computerSelection, this.classList.value);
+                setTimeout(()=>{
+                    //Call compare hands
+                    compareHands(this.classList.value, computerSelection);
 
-                //Upadate pictures
-                computerHand.src =`./pictures/${computerSelection}.png`;
-                playerHand.src =`./pictures/${this.classList}.png`;
+                    //Upadate pictures
+                    computerHand.src =`./pictures/${computerSelection}.png`;
+                    playerHand.src =`./pictures/${this.classList.value}.png`;
+                }, 1300)
 
+                //Animation
                 playerHand.style.animation = "shakePlayer 1.5s ease";
-                computerHand.style.animation = "shakeComputer 2s ease";
+                computerHand.value.classlist.style.animation = "shakeComputer 1.5s ease";
             });
         });
 
@@ -59,7 +63,7 @@ const game = ()=> {
         computerScore.textContent =cScore;
     }
 
-    const compareHands = (computerSelection, playerSelection) =>{
+    const compareHands = (playerSelection, computerSelection) =>{
         //Update text
         const winner = document.querySelector(".winner");
         //Checking for a tie
