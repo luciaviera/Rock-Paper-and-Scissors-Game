@@ -20,13 +20,12 @@ const game = ()=> {
         const playerHand = document.querySelector(".player-hand");
         const computerHand = document.querySelector(".computer-hand");
         const hands = document.querySelectorAll(".hands img");
-
+        
         hands.forEach(hand =>{
             hand.addEventListener("animationend", function(){
                 this.style.animation = "";
             });
         });
-
 
         //Computer Options
         const computerOptions = ["ROCK", "PAPER", "SCISSORS"];
@@ -37,6 +36,9 @@ const game = ()=> {
                 //Computer Play
                 const computerPlay = Math.floor(Math.random() *3);
                 const computerSelection = computerOptions[computerPlay];
+                
+                computerHand.src = "./pictures/ROCK.png";
+                playerHand.src = "./pictures/ROCK.png"; 
 
                 setTimeout(()=>{
                     //Call compare hands
@@ -46,6 +48,8 @@ const game = ()=> {
                     computerHand.src =`./pictures/${computerSelection}.png`;
                     playerHand.src =`./pictures/${this.classList.value}.png`;
                 }, 1300)
+
+
 
                 //Animation
                 playerHand.style.animation = "shakePlayer 1.5s ease";
@@ -66,20 +70,25 @@ const game = ()=> {
     const compareHands = (playerSelection, computerSelection) =>{
         //Update text
         const winner = document.querySelector(".winner");
+        const winnerReason = document.querySelector(".winner-reason");
+
         //Checking for a tie
         if(playerSelection === computerSelection){
             winner.textContent = "It is a tie";
+            winnerReason.textContent= "";
             return;
         }
         //Check for rock
         if (playerSelection === "ROCK"){
             if(computerSelection === "SCISSORS"){
                 winner.textContent = "Player Wins";
+                winnerReason.textContent= "Rock beats scissors";
                 pScore++;
                 updateScore();
                 return;
             }else{
                 winner.textContent = "Computer Wins";
+                winnerReason.textContent= "Paper beats rock";
                 cScore++;
                 updateScore();
                 return;
@@ -89,11 +98,13 @@ const game = ()=> {
         if (playerSelection === "PAPER"){
             if(computerSelection === "SCISSORS"){
                 winner.textContent = "Computer Wins";
+                winnerReason.textContent= "Scissors beats paper";
                 cScore++;
                 updateScore();
                 return;
             }else{
                 winner.textContent = "Player Wins";
+                winnerReason.textContent= "Paper beats rock";
                 pScore++;
                 updateScore();
                 return;
@@ -103,18 +114,18 @@ const game = ()=> {
         if (playerSelection === "SCISSORS"){
             if(computerSelection === "ROCK"){
                 winner.textContent = "Computer Wins";
+                winnerReason.textContent= "Rock beats Scissors";
                 cScore++;
                 updateScore();
                 return;
             }else{
                 winner.textContent = "Player Wins";
+                winnerReason.textContent= "Scissors beats paper";
                 pScore++;
                 updateScore();
                 return;
             }
         }
-        
-
     }
 
     // Call all the inner functions
