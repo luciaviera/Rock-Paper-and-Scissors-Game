@@ -1,7 +1,7 @@
 const game = ()=> {
 
-    let pScore = 0;
-    let cScore = 0;
+    let pScore;
+    let cScore;
 
     //Start the game
     const startGame = () => {
@@ -10,8 +10,31 @@ const game = ()=> {
         const match = document.querySelector(".match");
 
         playButton.addEventListener("click", ()=> {
+
+            const playerScore = document.querySelector(".player-score p");
+            const computerScore = document.querySelector(".computer-score p");
+            const playerHand = document.querySelector(".player-hand");
+            const computerHand = document.querySelector(".computer-hand");
+
+            var winner = document.getElementById("winner");
+            var winnerReason = document.getElementById("winnerReason");
+
+            winner.innerText = "Choose an option";
+            winnerReason.innerText = ""; 
+
+            playerScore.textContent = 0;
+            computerScore.textContent = 0;
+            computerHand.src = "./pictures/ROCK.png";
+            playerHand.src = "./pictures/ROCK.png"; 
+
+            pScore = 0;
+            cScore = 0;
+
+            introScreen.classList.remove("fadeIn");
             introScreen.classList.add("fadeOut");
-            match .classList.add("fadeIn");
+
+            match.classList.remove("fadeOut");
+            match.classList.add("fadeIn");
         });
     };
     //Play Match
@@ -65,6 +88,26 @@ const game = ()=> {
         const computerScore = document.querySelector(".computer-score p");
         playerScore.textContent = pScore;
         computerScore.textContent =cScore;
+
+        if(pScore == 5 || cScore == 5)
+        {
+            const introScreen = document.querySelector(".intro");
+            const match = document.querySelector(".match");
+
+            introScreen.classList.remove("fadeOut");
+            introScreen.classList.add("fadeIn");
+
+            match.classList.remove("fadeIn");
+            match.classList.add("fadeOut");
+
+
+
+            var title = document.getElementById("title");
+            var button = document.getElementById("button1");
+
+            title.innerText = pScore == 5 ? "Player wins!" : "Computer wins!";
+            button.innerText = "LET'S PLAY AGAIN"; 
+        }
     }
 
     const compareHands = (playerSelection, computerSelection) =>{

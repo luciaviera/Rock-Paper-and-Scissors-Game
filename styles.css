@@ -57,7 +57,7 @@ body {
     font-size: 60px;
     -webkit-text-stroke: 0.0000000000000001px #D8D7DD;
     justify-content: space-around;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.8s ease;
 }
  
 #button1,
@@ -114,11 +114,13 @@ body {
 div.fadeOut{
     opacity: 0;
     pointer-events: none;
+    transition: 0.8s ease;
 }
 
 div.fadeIn {
     opacity: 1;
     pointer-events: all;
+    transition: 4s;
 }
 
 .winner-reason{
